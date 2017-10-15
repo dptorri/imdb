@@ -35,26 +35,10 @@ ON `imdb_movie_status`.`id`=`imdb_movie`.`imdb_movie_status_id`
 WHERE `imdb_movie`.`imdb_id`= ?";
 $statement = db::query($query, [$name]);
 $data = $statement->fetchAll();?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Movie Matic Plus</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
-<body>
-    <div class="container-column">
-        <ul class="sidenav">
-            <li><a class="active" href="index_.php">Home</a></li>
-            <li><a href="#cast-list ">Cast</a></li>
-            <li><a href="#trailer">Trailer</a></li>
-            <li><a href="#gallery">Gallery</a></li>
-          </ul>
-        <!-- ends nav-bar -->
+
+<?php require 'navbar.php';
+echo $navbar; ?>
+
         <div class="movie-details">
             <section class="m-details">
                 <div class="movie-poster">
@@ -80,21 +64,18 @@ $data = $statement->fetchAll();?>
                     <?php endforeach; ?>
                     <?php 
                     $query="
-                    SELECT
-                    
-                    `imdb_genre`.`name`
-                    
+                    SELECT  `imdb_genre`.`name`
                     FROM `imdb_movie`
                     LEFT JOIN
                     `imdb_movie_has_genre`
                     ON
                     `imdb_movie_has_genre`.`imdb_movie_id`=`imdb_movie`.`imdb_id`
-                    
                     LEFT JOIN
                     `imdb_genre`
                     ON 
                     `imdb_genre`.`id`=`imdb_movie_has_genre`.`imdb_genre_id`
                    WHERE `imdb_movie`.`imdb_id`=  ?
+                   ORDER BY `imdb_movie_has_genre`.`priority` 
                     ";
                
                     $statement = db::query($query, [$name]);
@@ -105,7 +86,7 @@ $data = $statement->fetchAll();?>
                          if($data[0][0]!==null){
                             for($i=0;$i<count($data);$i++){
                                 for($j=0;$j<count($data[$i]);$j++){
-                                    if(isset($data[$i][$j])){echo '['.$data[$i][$j].']';};
+                                    if(isset($data[$i][$j])){echo '<a  href="/imdb/genres/'.$data[$i][$j].'.php">['.$data[$i][$j].']</a>';};
                                     
                                 }
                             }

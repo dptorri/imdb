@@ -36,8 +36,9 @@ $data = $statement->fetchAll();
         </form>
     </div> 
     <div class="search-result">   
-<h1>Search results for: <i><?php echo $namem;?>...</i></h1>
+
         <ul>
+        <?php echo '<h1>Search results for: <i>'.$namem.'...</i></h1>'; ?>
         <?php foreach($data as $imdb_movie) : ?>
         <li> <a href="
         <?php echo 'detail.php?search='.$imdb_movie['imdb_id'];?>">
@@ -85,6 +86,7 @@ $data = $statement->fetchAll();
     
 img { width:200px; height:200px;}
 a {background-color:white;}
+h1 {color:white;}
     </style>
 </body>
 </html>
