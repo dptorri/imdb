@@ -1,8 +1,5 @@
 ##Incredible Movie Data Base
 #CodingBootbCamp Prague - MySQL and PHP Challenge
-#
-#
-#
 #index_.php 
 Contains the main search page with some clickable movie posters
 #detail.php
