@@ -16,8 +16,9 @@ $name = $url['/imdb/detail_php?search'];
 $query = "
 SELECT 
 `imdb_movie`.`imdb_id`,
+`imdb_movie`.`votes_nr` AS `movie_votes`,
 `imdb_movie`.`year`,
-`imdb_movie`.`rating`,
+`imdb_movie`.`rating` AS `movie_rating`,
 `imdb_movie`.`name` AS `movie_name`,
 `imdb_movie_type`.`name` AS `movie_type`,
 `imdb_certification`.`label` AS `certification`,
@@ -56,6 +57,9 @@ echo $navbar; ?>
                    <div class="movie-score">
                 <ul>
                     <?php foreach($data as $imdb_movie => $value) : ?>
+                    <li><h2 style="margin:0px 0px 0px 0px;">Rating :<?php echo $value['movie_rating']; ?><i class="fa fa-thermometer-full" aria-hidden="true"></i></h2></li>
+                    <li><h5 style="margin:0px 0px 0px 0px;">based on <?php echo number_format($value['movie_votes']).' votes'; ?><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></h5></li>
+                    <li><img class="logos" src="img/imdb.png" alt="go to IMDB"> <a href=" <?php echo 'http://www.imdb.com/title/tt' . $name . '/?ref_=nv_sr_1'; ?>">more info...<?php //echo $value['rating'];?></a></li>
                     <li>Title :<?php echo $value['movie_name']; ?></li>
                     <li>Year : <?php echo $value['year']; ?></li>
                     <li>Type :<?php echo $value['movie_type']; ?></li>
@@ -100,7 +104,7 @@ echo $navbar; ?>
                     <li>Director :<?php// echo $imdb_movie['movie_type']; ?></li>
                     
                     <li><img class="logos" src="img/metacritic.png" alt="go to metacritic"> <a href="http://www.metacritic.com/g00/movie/the-wolf-of-wall-street?i10c.encReferrer="></li>
-                    <li><img class="logos" src="img/imdb.png" alt="go to IMDB"> <a href=" <?php echo 'http://www.imdb.com/title/tt' . $name . '/?ref_=nv_sr_1'; ?>">Rating IMDB <?php //echo $value['rating'];?></a></li>
+                    
                     <li><img class="logos" src="img/tomato.png" alt="go to RottenTomatoes"> <a href="https://www.rottentomatoes.com/m/the_wolf_of_wall_street_2013/"></a></li>
                     
                 </ul>

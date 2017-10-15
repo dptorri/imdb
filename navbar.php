@@ -8,8 +8,10 @@ $navbar = '
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Movie Matic Plus</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </head>
 <body>
     <div class="container-column">
