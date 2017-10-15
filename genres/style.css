@@ -44,12 +44,10 @@ div.content {
     }
     div.content {margin-left: 0;}
 
-
-
-
     body {
-            background: url("https://ia.media-imdb.com/images/M/MV5BMzUxMTA0OTYwMl5BMl5BanBnXkFtZTgwMTEyNzk2MDI@._V1.jpg") no-repeat fixed center top #000;
-        }       
+        background: url("https://ia.media-imdb.com/images/M/MV5BMzUxMTA0OTYwMl5BMl5BanBnXkFtZTgwMTEyNzk2MDI@._V1.jpg") no-repeat fixed center top #000;
+        
+    }       
 *{box-sizing: border-box; /*margin:0;padding: 0;border: 0;*/ font-family: 'Trebuchet MS';}
 .container-column{  display:flex;   flex-direction: column;  background-color:white; margin-left: 5%; width:90%;}
 .nav-bar li {       display: inline;                         background-color:white; max-width:100%;}
@@ -60,7 +58,7 @@ div.content {
 .cast-details{      display: block; flex-wrap: wrap;  margin-left: auto;margin-right: auto;       background-color:white; max-width:100%;height:auto;}
 .cast-list{         display: block; flex-wrap: wrap;         background-color:white; max-width:100%;height:auto;}
 .cast-stars{        display: block; flex-wrap: wrap;          background-color:white;max-width:100%;height:auto;}
-p, li {font-size:2rem; padding-right: 20px;}
+p, li { padding-right: 20px;}
 img.poster {height: 268px;width: 182px; margin-left:auto; margin-right: auto;}
 img.cast-pic { max-height: 210px;width: auto; padding: 3px;flex-shrink:1; }
 table {border-collapse: collapse;width: 100%;}
@@ -81,7 +79,7 @@ img.logos{min-width:auto; max-width:2em;height: 1em;}
 
 }
 @media screen and (min-width: 800px){
-p, li {font-size:2rem;}
+
 .container-column{         display: flex;  flex-direction: column;flex-wrap: wrap; margin-left: 5%;  width: 90%;}
 section.m-details{         display: flex;  justify-content: center;flex-flow: row; margin-top: 3px; flex-wrap: wrap;margin-left: auto;margin-right: auto;}
 section div.movie-poster{  display: flex;  flex-grow:1;flex-wrap: wrap; height:auto;min-width: 200px;}

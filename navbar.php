@@ -14,10 +14,11 @@ $navbar = '
 <body>
     <div class="container-column">
         <ul class="sidenav">
-            <li><a class="active" href="\index_.php">Home</a></li>
+            <li><a class="active" href="index_.php">Home</a></li>
+            <!--
             <li><a href="#cast-list ">Cast</a></li>
             <li><a href="#trailer">Trailer</a></li>
-            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#gallery">Gallery</a></li>-->
           </ul>
         <!-- ends nav-bar -->
         ';

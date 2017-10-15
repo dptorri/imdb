@@ -86,6 +86,7 @@ echo $navbar; ?>
                          if($data[0][0]!==null){
                             for($i=0;$i<count($data);$i++){
                                 for($j=0;$j<count($data[$i]);$j++){
+                                   
                                     if(isset($data[$i][$j])){echo '<a  href="/imdb/genres/'.$data[$i][$j].'.php">['.$data[$i][$j].']</a>';};
                                     
                                 }
