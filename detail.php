@@ -59,11 +59,12 @@ echo $navbar; ?>
                     <li><h2 style="margin:0px 0px 0px 0px;">Rating :<?php echo $value['movie_rating']; ?><i class="fa fa-thermometer-full" aria-hidden="true"></i></h2></li>
                     <li><h5 style="margin:0px 0px 0px 0px;">based on <?php echo number_format($value['movie_votes']).' votes'; ?><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></h5></li>
                     <li><img class="logos" src="img/imdb.png" alt="go to IMDB"> <a href=" <?php echo 'http://www.imdb.com/title/tt' . $name . '/?ref_=nv_sr_1'; ?>">more info...<?php //echo $value['rating'];?></a></li>
-                    <li>Title :<?php echo $value['movie_name']; ?></li>
+                    <li>Title :<?php $movie_name = $value['movie_name']; echo $value['movie_name']; ?></li>
                     <li>Year : <?php echo $value['year']; ?></li>
                     <li>Type :<?php echo $value['movie_type']; ?></li>
                     <li>Certification :<?php if($value['certification']==null){echo 'Not Rated';}echo $value['certification']; ?></li>
                     <li> Status :<?php if($imdb_movie['status']== null){echo 'completed';} echo $imdb_movie['status'];?></li>
+
                     <?php endforeach; ?>
                     <?php 
                     $query="
@@ -106,7 +107,9 @@ echo $navbar; ?>
                     
                     <li><img class="logos" src="img/tomato.png" alt="go to RottenTomatoes"> <a href="https://www.rottentomatoes.com/m/the_wolf_of_wall_street_2013/"></a></li>
                     -->
+                    <li><a href=<?php echo '"https://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Dmovies-tv&field-keywords='.$movie_name.'"><img style="border:1px solid grey;width:60px;height:30px;"src="img/amazon.png" alt=""> <span>Shop in Amazon</span></img>';?></a></li>
                 </ul>
+                
             </div>
             <div class="movie-plot">
                     <p><?php include 'plot.php'; 
@@ -204,61 +207,14 @@ echo $navbar; ?>
                             <tr>
                 <th class="ttitle">Trailer</th>   </tr> </table>
                 <div class="video">
-                        <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/pabEtIERlic?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe></div>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/?listType=search&list=<?php echo $movie_name.' Official trailer'; ?>&autoplay=1" frameborder="0" allowfullscreen></iframe></div>
             </div>
             <div id="gallery" class="gallery">
                     <table>
                             <tr>
                 <th class="ttitle">Gallery</th>   </tr> </table>
-                    <div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin-top:3px;margin-left: auto;margin-right: auto;max-width:600px;">
-                     
-                      <ol class="carousel-indicators">
-                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                        <li data-target="#myCarousel" data-slide-to="1"></li>
-                        <li data-target="#myCarousel" data-slide-to="2"></li>
-                        <li data-target="#myCarousel" data-slide-to="3"></li>
-                        <li data-target="#myCarousel" data-slide-to="4"></li>
-                      </ol>
+          
                   
-                        <div class="carousel-inner">
-                        <div class="item active">
-                          <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMjA4NjQ5MDI2MV5BMl5BanBnXkFtZTgwNjg0MzQ4MDE@._V1_SX1500_CR0,0,1500,999_AL_.jpg" alt="Margot Robbie" style="max-width:600px;">
-                        </div>
-                  
-                        <div class="item">
-                          <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMjA5ODI4NTEwNl5BMl5BanBnXkFtZTgwNzg0MzQ4MDE@._V1_SX1500_CR0,0,1500,999_AL_.jpg" alt="FBI Agents" style="max-width:600px;">
-                        </div>
-                      
-                        <div class="item">
-                          <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTY5NzU3OTg4NV5BMl5BanBnXkFtZTgwMTc0MzQ4MDE@._V1_SX1500_CR0,0,1500,999_AL_.jpg" alt="Teddy Bear" style="max-width:600px;">
-                        </div>
-
-                        <div class="item">
-                                <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTQ3OTc1OTQ0NV5BMl5BanBnXkFtZTgwNzUyOTg2MDE@._V1_SX1500_CR0,0,1500,999_AL_.jpg" alt="Smuggling Money" style="max-width:600px;">
-                              </div>
-                              <div class="item">
-                                    <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BNTMyMzE4NzA4N15BMl5BanBnXkFtZTgwNzY3NTIxMDE@._V1_SX1500_CR0,0,1500,999_AL_.jpg" alt="Pool Party" style="max-width:600px;">
-                                  </div>
-
-
-                      </div>
-
-                      
-                  
-                 
-                      <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                        <span class="glyphicon glyphicon-chevron-left"></span>
-                        <span class="sr-only">Previous</span>
-                      </a>
-                      <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                        <span class="glyphicon glyphicon-chevron-right"></span>
-                        <span class="sr-only">Next</span>
-                      </a> -->
-                    </div>
-                  </div>
-                 
-        </div>
-    </div>
     
 </body>
 
