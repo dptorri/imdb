@@ -36,7 +36,6 @@ ON `imdb_movie_status`.`id`=`imdb_movie`.`imdb_movie_status_id`
 WHERE `imdb_movie`.`imdb_id`= ?";
 $statement = db::query($query, [$name]);
 $data = $statement->fetchAll();?>
-
 <?php require 'navbar.php';
 echo $navbar; ?>
 
@@ -106,40 +105,86 @@ echo $navbar; ?>
                     <li><img class="logos" src="img/metacritic.png" alt="go to metacritic"> <a href="http://www.metacritic.com/g00/movie/the-wolf-of-wall-street?i10c.encReferrer="></li>
                     
                     <li><img class="logos" src="img/tomato.png" alt="go to RottenTomatoes"> <a href="https://www.rottentomatoes.com/m/the_wolf_of_wall_street_2013/"></a></li>
-                    
+                    -->
                 </ul>
             </div>
             <div class="movie-plot">
-                    <p>Here a movie plot please!</p>
+                    <p><?php include 'plot.php'; 
+                    if(isset($plot[$name]))
+                    {echo $plot[$name];} 
+                    else {echo $plot[0];}?></p>
                 </div>
-            
+                        
             </section>
-        </div>
+        </div>  
        
         <div id="cast-list" class="cast-details">
 
             <section class="c-details">
             <div class="cast-list">
+
+            <?php //HANDLES THE CAST DATA!!!!
+                    $query="
+                    SELECT  
+                    `imdb_movie_has_person`.`priority`,
+                    `imdb_movie_has_person`.`description`,
+                    `imdb_person`.`fullname`,
+                    `imdb_position`.`label`,
+                    `imdb_position`.`id`,
+                    `imdb_person`.`imdb_id` AS `person_id`
+                    FROM `imdb_movie`
+                    LEFT JOIN
+                    `imdb_movie_has_person`
+                    ON
+                    `imdb_movie_has_person`.`imdb_movie_id`=`imdb_movie`.`imdb_id`
+                    LEFT JOIN
+                    `imdb_person`
+                    ON 
+                    `imdb_person`.`imdb_id`=`imdb_movie_has_person`.`imdb_person_id`
+                    
+                    LEFT JOIN
+                    `imdb_position`
+                    ON 
+                    `imdb_position`.`id`=`imdb_movie_has_person`.`imdb_position_id`
+                    WHERE `imdb_movie`.`imdb_id`=  ?
+                    ORDER BY  `imdb_movie_has_person`.`priority` DESC 
+                    LIMIT 5
+                    ";
+               
+                    $statement = db::query($query, [$name]);
+                    $data = $statement->fetchAll();
+                    if($data[0]['person_id']==null){
+                    
+                        $data[0][0] = 'to be updated :)';
+                        $data[0][1] = 'to be updated :)';
+                        $data[0][2] = 'to be updated :)';
+                        $data[0][3] = 'to be updated :)';
+                        $data[0][4] = 'to be updated :)';
+                        $data[0][5] = 'to be updated :)';
+                        }
+                    
+                                        ?>
+
                     <table>
                         <tr>
                             <th>Cast</th>
                             <th></th>
                         </tr>
                         <tr>
-                            <td><a href="http://www.imdb.com/name/nm0000138/?ref_=fn_al_nm_1">Leonardo DiCaprio</a></td>
-                            <td>Jordan Belfort</td>
+                            <td><a href="http://www.imdb.com/name/nm<?php echo $data[0]['person_id'];?>/?ref_=fn_al_nm_1"><?php echo $data[0]['fullname']; ?></a></td>
+                            <td><?php echo $data[0]['description']; ?></td>
                         </tr>
                         <tr>
-                            <td><a href="http://www.imdb.com/name/nm1706767/?ref_=tt_cl_t2">Jonah Hill</a></td>
-                            <td>Donnie Azoff</td>
+                            <td><a href="http://www.imdb.com/name/nm<?php echo $data[1]['person_id'];?>/?ref_=fn_al_nm_1"><?php echo $data[1]['fullname']; ?></a></td>
+                            <td><?php echo $data[1]['description']; ?></td>
                         </tr>
                         <tr>
-                            <td> <a href="http://www.imdb.com/name/nm3053338/?ref_=tt_cl_t3">Margot Robbie</a></td>
-                            <td>Naomi Lapaglia</td>
+                            <td><a href="http://www.imdb.com/name/nm<?php echo $data[2]['person_id'];?>/?ref_=fn_al_nm_1"><?php echo $data[2]['fullname']; ?></a></td>
+                            <td><?php echo $data[2]['description']; ?></td>
                         </tr>
                         <tr>
-                            <td><a href="http://www.imdb.com/name/nm0000190/?ref_=tt_cl_t4">Matthew McConaughey</a></td>
-                            <td>Mark Hanna</td>
+                            <td><a href="http://www.imdb.com/name/nm<?php echo $data[3]['person_id'];?>/?ref_=fn_al_nm_1"><?php echo $data[3]['fullname']; ?></a></td>
+                            <td><?php echo $data[3]['description']; ?></td>
                         </tr>
                         <tr>
                                 <td>see more...</td>
@@ -147,11 +192,12 @@ echo $navbar; ?>
                         </tr>
                     </table>
             </div>
+            
             <div class="cast-stars">
-                <a href="http://www.imdb.com/name/nm0000138/?ref_=fn_al_nm_1"><img class="cast-pic" src="img/a_1.jpg" alt="photo of Leonardo DiCaprio"></a>
-                <a href="http://www.imdb.com/name/nm1706767/?ref_=tt_cl_t2"><img class="cast-pic" src="img/a_2.jpg" alt="photo of Jonah Hill"></a>
-                <a href="http://www.imdb.com/name/nm3053338/?ref_=tt_cl_t3"><img class="cast-pic" src="img/a_3.jpg" alt="photo of Margot Robbie"></a>
-                <a href="http://www.imdb.com/name/nm0000190/?ref_=tt_cl_t4"><img class="cast-pic" src="img/a_4.jpg" alt="photo of Matthew McConaughey"></a>
+            <a href="http://www.imdb.com/name/nm<?php echo $data[0]['person_id'];?>/?ref_=fn_al_nm_1"><img class="cast-pic" src="img/<?php echo $data[0]['person_id'];?>.jpg" alt="photo of <?php echo $data[0]['fullname']; ?>"></a>
+            <a href="http://www.imdb.com/name/nm<?php echo $data[1]['person_id'];?>/?ref_=fn_al_nm_1"><img class="cast-pic" src="img/<?php echo $data[1]['person_id'];?>.jpg" alt="photo of <?php echo $data[1]['fullname']; ?>"></a>
+            <a href="http://www.imdb.com/name/nm<?php echo $data[2]['person_id'];?>/?ref_=fn_al_nm_1"><img class="cast-pic" src="img/<?php echo $data[2]['person_id'];?>.jpg" alt="photo of <?php echo $data[2]['fullname']; ?>"></a>
+            <a href="http://www.imdb.com/name/nm<?php echo $data[3]['person_id'];?>/?ref_=fn_al_nm_1"><img class="cast-pic" src="img/<?php echo $data[3]['person_id'];?>.jpg" alt="photo of <?php echo $data[3]['fullname']; ?>"></a>
             </div></section>
             <div id="trailer" class="trailer">
                     <table>
